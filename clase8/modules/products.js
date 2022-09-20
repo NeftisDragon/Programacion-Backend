@@ -20,7 +20,9 @@ router.get('/api/products/:id', async (req, res) => {
 
     const products = await container.getById(id);
     if (products === 0) {
-        res.status(400).send({error: 'Product not found.'});
+        res.status(400).send({
+            error: 'Product not found.'
+        });
     } else {
         res.status(200).send(products);
     }
