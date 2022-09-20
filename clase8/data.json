@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "name": "bryce",
+        "id": 0
+    },
+    {
+        "name": "lorem",
+        "id": 1
+    },
+    {
+        "name": "ipsum",
+        "id": 2
+    },
+    {
+        "name": "adine",
+        "id": 3
+    }
+]

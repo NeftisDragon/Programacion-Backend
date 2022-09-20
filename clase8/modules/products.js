@@ -14,9 +14,11 @@ router.get('/products', async (req, res) => {
 })
 
 router.get('/products/:id', async (req, res) => {
-    const {
+    let {
         id
     } = req.params;
+
+    id = parseInt(id);
 
     const products = await container.getById(id);
     if (products === 0) {

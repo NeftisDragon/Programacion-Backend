@@ -42,7 +42,7 @@ class Container {
     async getById(id) {
         const fileContent = await this.#readFile();
         const element = fileContent.find(e => e.id === id)
-        return element ? element : null;
+        return element ? element : 0;
     }
 
     async getAll() {
