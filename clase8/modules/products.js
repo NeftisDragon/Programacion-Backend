@@ -6,14 +6,14 @@ const {
 
 const router = Router();
 
-const container = new Container('../data.json');
+const container = new Container('./clase8/data.json');
 
 
-router.get('/api/products', async (req, res) => {
+router.get('/products', async (req, res) => {
     res.status(200).send(await container.getAll());
 })
 
-router.get('/api/products/:id', async (req, res) => {
+router.get('/products/:id', async (req, res) => {
     const {
         id
     } = req.params;

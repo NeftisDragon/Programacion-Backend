@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.use('/api/products', products);
+app.use('/api/', products);
 app.use(express.static('./clase8/public'));
 
 /* app.get('/', (req, res) => {
