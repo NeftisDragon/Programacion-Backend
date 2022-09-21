@@ -20,19 +20,47 @@ router.get('/products/:id', async (req, res) => {
 
     id = parseInt(id);
 
-    const products = await container.getById(id);
-    if (products === 0) {
+    const product = await container.getById(id);
+    if (product === 0) {
         res.status(400).send({
             error: 'Product not found.'
         });
     } else {
-        res.status(200).send(products);
+        res.status(200).send(product);
     }
 })
 
 router.post('/', async (req, res) => {
     const saveProduct = req.body;
     res.status(201).send(await container.save(saveProduct));
+})
+
+router.put('/products/:id', async (req, res) => {
+    let {
+        id
+    } = req.params;
+
+    id = parseInt(id);
+
+    let product = await container.getById(id);
+
+    if (product === 0) {
+        res.status(400).send({
+            error: 'Product not found.'
+        });
+    } else {
+        /* product = Object.keys(product).forEach(key => key = req.body);
+        res.status(201).send(await container.modifyById(id, product)); */
+    }
+})
+
+router.delete('/products/:id', async (req, res) => {
+    let {
+        id
+    } = req.params;
+
+    id = parseInt(id);
+    res.status(201).send(await container.deleteById(id));
 })
 
 module.exports = router;

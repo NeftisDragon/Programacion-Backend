@@ -39,6 +39,18 @@ class Container {
         }
     }
 
+    async modifyById(id, product) {
+        try {
+            const fileContent = await this.#readFile();
+            /* fileContent.find(e => e.id === id);
+            await fs.promises.writeFile(this.file, JSON.stringify([...product]), 'utf-8'); */
+
+            return 'Object updated.'
+        } catch (error) {
+            return error;
+        }
+    }
+
     async getById(id) {
         const fileContent = await this.#readFile();
         const element = fileContent.find(e => e.id === id)
