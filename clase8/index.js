@@ -42,8 +42,7 @@ class Container {
     async modifyById(id, product) {
         try {
             const fileContent = await this.#readFile();
-            /* fileContent.find(e => e.id === id);
-            await fs.promises.writeFile(this.file, JSON.stringify([...product]), 'utf-8'); */
+            await fs.promises.writeFile(fileContent.find(e => e.id === id), JSON.stringify([...product], null, 2), 'utf-8');
 
             return 'Object updated.'
         } catch (error) {

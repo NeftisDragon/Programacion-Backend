@@ -49,8 +49,8 @@ router.put('/products/:id', async (req, res) => {
             error: 'Product not found.'
         });
     } else {
-        /* product = Object.keys(product).forEach(key => key = req.body);
-        res.status(201).send(await container.modifyById(id, product)); */
+        product = Object.keys(product).forEach(key => key = req.body);
+        res.status(201).send(await container.modifyById(id, product));
     }
 })
 
