@@ -49,7 +49,7 @@ router.put('/products/:id', async (req, res) => {
             error: 'Product not found.'
         });
     } else {
-        product = Object.keys(product).forEach(key => key = req.body);
+        product = req.body;
         res.status(201).send(await container.modifyById(id, product));
     }
 })
