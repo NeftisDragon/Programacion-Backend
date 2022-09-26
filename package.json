@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon clase8/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss src/scss/main.scss src/styles/app.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "node-sass": "^7.0.3",
+    "nodemon": "^2.0.20"
   }
 }

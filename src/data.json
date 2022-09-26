@@ -1,0 +1,32 @@
+[
+  {
+    "name": "MSI Crosshair 17",
+    "price": "1799.00",
+    "overview": "https://asset.msi.com/resize/image/global/product/product_1640065634262398969ec2a65948b5ab4dd5cf6b28.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+    "id": 0
+  },
+  {
+    "name": "MSI GE76 Raider Dragon Edition TIAMAT",
+    "price": "4699.00",
+    "overview": "https://asset.msi.com/resize/image/global/product/product_1609816540ff5c0f702901ee7c0dc1284a43d28aa1.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+    "id": 1
+  },
+  {
+    "name": "MSI GL62M 7RDX",
+    "price": "999.00",
+    "overview": "https://asset.msi.com/resize/image/global/product/product_9_20180126152707_5a6ad84b3eab5.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+    "id": 2
+  },
+  {
+    "name": "MSI GT76 Titan DT",
+    "price": "4599.00",
+    "overview": "https://asset.msi.com/resize/image/global/product/product_16472202135684189c073fe3cec44093fbc0db5bb3.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+    "id": 3
+  },
+  {
+    "name": "MSI Katana GF66",
+    "price": "1599.00",
+    "overview": "https://asset.msi.com/resize/image/global/product/product_1647563573bdecf8dc390e458baa679a1647ebc381.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
+    "id": 4
+  }
+]

@@ -7,11 +7,13 @@ app.use(express.urlencoded({
     extended: true
 }));
 app.use('/api/', products);
-app.use(express.static('./clase8/public'));
 
-/* app.get('/', (req, res) => {
-    res.send(`<h1 style="color:blue">Hello World!</h1>`)
-}) */
+app.set('views', './src/views');
+app.set('view engine', 'pug');
+
+app.get('/', (req, res) => {
+    res.render('index');
+})
 
 const PORT = 8080;
 

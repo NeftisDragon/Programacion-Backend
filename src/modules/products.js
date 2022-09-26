@@ -6,11 +6,19 @@ const {
 
 const router = Router();
 
-const container = new Container('./clase8/data.json');
+const container = new Container('./src/data.json');
 
+router.post('/', async (req, res) => {
+    const saveProduct = req.body;
+    await container.save(saveProduct);
+    res.status(201).redirect('/api/products');
+})
 
 router.get('/products', async (req, res) => {
-    res.status(200).send(await container.getAll());
+    res.render('table', {
+        products: await container.getAll(),
+        message: "No products found"
+    });
 })
 
 router.get('/products/:id', async (req, res) => {
@@ -30,10 +38,6 @@ router.get('/products/:id', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
-    const saveProduct = req.body;
-    res.status(201).send(await container.save(saveProduct));
-})
 
 router.put('/products/:id', async (req, res) => {
     let {
