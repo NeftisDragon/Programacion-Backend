@@ -1,0 +1,42 @@
+[
+	{
+		"user": "Jason",
+		"input": "Hello World!",
+		"date": "4:52 PM"
+	},
+	{
+		"user": "Charles",
+		"input": "Hi!",
+		"date": "5:01 PM"
+	},
+	{
+		"user": "Ryan",
+		"input": "Yoo",
+		"date": "8:35 PM"
+	},
+	{
+		"user": "Riley",
+		"input": "Hi",
+		"date": "2:13 AM"
+	},
+	{
+		"user": "Henry",
+		"input": "Sup",
+		"date": "2:14 AM"
+	},
+	{
+		"user": "vn",
+		"input": "bnv",
+		"date": "2:55 AM"
+	},
+	{
+		"user": "xzc",
+		"input": "xzc",
+		"date": "2:58 AM"
+	},
+	{
+		"user": "vxc",
+		"input": "cxv",
+		"date": "2:58 AM"
+	}
+]

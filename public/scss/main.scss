@@ -27,7 +27,7 @@ section {
     align-items: center;
     flex-flow: column;
 
-    form {
+    .prod-form {
         margin: 20px;
         background-color: #95A5A6;
         border-radius: 10px;
@@ -168,5 +168,82 @@ section {
 
     .continue-btn:active {
         background-color: rgba(162, 180, 174, 0.315);
+    }
+}
+
+/*CHAT*/
+.message-area {
+    margin: 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 500px;
+    background-image: linear-gradient(#ffffff, #95A5A6);
+
+    .chat-form {
+        border-radius: 10px;
+        padding: 0 0 20px 0;
+        width: 500px;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+
+        div {
+            margin: 10px 10px;
+
+            label {
+                font-size: 14px;
+            }
+
+            input {
+                margin-top: 5px;
+                font-size: 14px;
+                padding: 5px;
+                width: 160px;
+                border: none;
+                border-radius: 5px;
+            }
+
+            .submit-btn-disabled {
+                width: 70px;
+                font-size: 14px;
+            }
+
+            .submit-btn-enabled {
+                width: 70px;
+                font-size: 14px;
+                background-color: #e0e0e0;
+                color: #000000;
+                padding: 5px;
+            }
+
+            .submit-btn-enabled:hover {
+                background-color: rgba(37, 241, 37, 0.901);
+                color: #ffffff;
+            }
+
+            .submit-btn-enabled:active {
+                background-color: #e6e6e6;
+                color: #b2b2b3;
+            }
+        }
+    }
+
+    #messages {
+        width: 500px;
+        padding: 20px;
+
+        .message {
+            list-style-type: none;
+            margin: 20px 0;
+
+            .date {
+                font-size: 10px;
+            }
+
+            .input {
+                margin-top: 5px;
+            }
+        }
     }
 }

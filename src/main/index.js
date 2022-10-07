@@ -1,4 +1,4 @@
-const Container = require('../index.js');
+const Container = require('../controllers/products.js');
 const express = require('express');
 const {
     Router
@@ -6,7 +6,7 @@ const {
 
 const router = Router();
 
-const container = new Container('./src/data.json');
+const container = new Container('./src/utils/data.json');
 
 router.post('/', async (req, res) => {
     const saveProduct = req.body;
@@ -19,6 +19,10 @@ router.get('/products', async (req, res) => {
         products: await container.getAll(),
         message: "No products found"
     });
+})
+
+router.get('/chat', async (req, res) => {
+    res.render('chat');
 })
 
 router.get('/products/:id', async (req, res) => {
@@ -37,7 +41,6 @@ router.get('/products/:id', async (req, res) => {
         res.status(200).send(product);
     }
 })
-
 
 router.put('/products/:id', async (req, res) => {
     let {

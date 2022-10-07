@@ -22,29 +22,29 @@ section {
   display: flex;
   align-items: center;
   flex-flow: column; }
-  section form {
+  section .prod-form {
     margin: 20px;
     background-color: #95A5A6;
     border-radius: 10px;
     padding: 20px;
     width: 400px; }
-    section form div {
+    section .prod-form div {
       margin: 40px 20px; }
-      section form div label {
+      section .prod-form div label {
         font-size: 16px; }
-      section form div input {
+      section .prod-form div input {
         margin-top: 5px;
         font-size: 20px;
         border: none;
         padding: 5px;
         width: 350px; }
-      section form div .send-btn {
+      section .prod-form div .send-btn {
         width: 360px;
         font-size: 24px; }
-      section form div .send-btn:hover {
+      section .prod-form div .send-btn:hover {
         background-color: rgba(37, 241, 37, 0.901);
         color: #ffffff; }
-      section form div .send-btn:active {
+      section .prod-form div .send-btn:active {
         background-color: #efefef90;
         color: initial; }
 
@@ -119,3 +119,55 @@ section {
     background-color: aquamarine; }
   .btn-container .continue-btn:active {
     background-color: rgba(162, 180, 174, 0.315); }
+
+/*CHAT*/
+.message-area {
+  margin: 20px;
+  border: 1px solid;
+  border-radius: 10px;
+  width: 500px;
+  background-image: linear-gradient(#ffffff, #95A5A6); }
+  .message-area .chat-form {
+    border-radius: 10px;
+    padding: 0 0 20px 0;
+    width: 500px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center; }
+    .message-area .chat-form div {
+      margin: 10px 10px; }
+      .message-area .chat-form div label {
+        font-size: 14px; }
+      .message-area .chat-form div input {
+        margin-top: 5px;
+        font-size: 14px;
+        padding: 5px;
+        width: 160px;
+        border: none;
+        border-radius: 5px; }
+      .message-area .chat-form div .submit-btn-disabled {
+        width: 70px;
+        font-size: 14px; }
+      .message-area .chat-form div .submit-btn-enabled {
+        width: 70px;
+        font-size: 14px;
+        background-color: #e0e0e0;
+        color: #000000;
+        padding: 5px; }
+      .message-area .chat-form div .submit-btn-enabled:hover {
+        background-color: rgba(37, 241, 37, 0.901);
+        color: #ffffff; }
+      .message-area .chat-form div .submit-btn-enabled:active {
+        background-color: #e6e6e6;
+        color: #b2b2b3; }
+  .message-area #messages {
+    width: 500px;
+    padding: 20px; }
+    .message-area #messages .message {
+      list-style-type: none;
+      margin: 20px 0; }
+      .message-area #messages .message .date {
+        font-size: 10px; }
+      .message-area #messages .message .input {
+        margin-top: 5px; }

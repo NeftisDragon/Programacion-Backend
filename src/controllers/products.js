@@ -1,7 +1,6 @@
-//cSpell:disable
 const fs = require('fs');
 
-class Container {
+module.exports = class Container {
     constructor(file) {
         this.file = file;
     }
@@ -94,7 +93,7 @@ class Container {
             const fileContent = await this.#readFile();
             if (fileContent.length !== 0) {
                 await fs.promises.writeFile(this.file, JSON.stringify([]));
-                return 'Arrray cleared.'
+                return 'Array cleared.'
             } else {
                 return 'Array is already empty.';
             }
@@ -113,5 +112,3 @@ class Container {
         }
     }
 }
-
-module.exports = Container;
