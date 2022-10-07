@@ -1,0 +1,21 @@
+extends layout
+block table
+    h1 Registered Products
+    div(class="table")
+        ul 
+            li(class="table-header")
+                div(class="col col-1") NAME
+                div(class="col col-2") PRICE
+                div(class="col col-3") OVERVIEW
+        ul 
+            if (products.length > 0)
+                each product in products
+                    li(class="table-row")
+                        div(class="col col-1")= product.name
+                        div(class="col col-2")= product.price 
+                        div(class="col col-3"): img(src=product.overview, alt=product.name, class="product-overview")
+            else
+                li(class="table-row")
+                    div(class="col")= message
+    div(class="btn-container")
+        a(href='/', class="return-btn") Return

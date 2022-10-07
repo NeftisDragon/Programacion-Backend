@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = class Container {
+module.exports = class Products {
     constructor(file) {
         this.file = file;
     }
@@ -67,8 +67,12 @@ module.exports = class Container {
     }
 
     async getAll() {
-        const fileContent = await this.#readFile();
-        return fileContent;
+        try {
+            const fileContent = await this.#readFile();
+            return fileContent;
+        } catch (error) {
+            return error;
+        }
     }
 
     async deleteById(id) {
