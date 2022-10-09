@@ -15,7 +15,7 @@ const render = (messages) => {
                 </li>
                 `
     })
-    document.getElementById('messages').innerHTML = html;
+    return document.getElementById('messages').innerHTML = html;
 }
 
 let user = document.getElementById('username');
