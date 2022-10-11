@@ -1,0 +1,33 @@
+[
+  {
+    "cart_id": 0,
+    "timestamp": "10/11/2022, 4:09:10 PM",
+    "products": []
+  },
+  {
+    "cart_id": 1,
+    "timestamp": "10/11/2022, 4:09:12 PM",
+    "products": []
+  },
+  {
+    "cart_id": 2,
+    "timestamp": "10/11/2022, 4:09:13 PM",
+    "products": [
+      {
+        "name": "Eval plushy",
+        "price": 0,
+        "description": "A cute plushy."
+      },
+      {
+        "name": "Eval plushy",
+        "price": 0,
+        "description": "A cute plushy."
+      }
+    ]
+  },
+  {
+    "cart_id": 3,
+    "timestamp": "10/11/2022, 4:09:20 PM",
+    "products": []
+  }
+]

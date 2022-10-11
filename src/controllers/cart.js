@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-module.exports = class Products {
+class Cart {
     constructor(file) {
         this.file = file;
     }
@@ -15,67 +15,59 @@ module.exports = class Products {
         }
     }
 
-    async save(obj) {
+    async newCart() {
         try {
             const fileContent = await this.#readFile();
             if (fileContent.length !== 0) {
                 await fs.promises.writeFile(this.file, JSON.stringify([...fileContent, {
-                    ...obj,
-                    id: fileContent[fileContent.length - 1].id + 1
+                    cart_id: fileContent[fileContent.length - 1].cart_id + 1,
+                    timestamp: new Date().toLocaleString("en-US"),
+                    products: []
                 }], null, 2), 'utf-8');
 
-                return 'Object(s) created.';
+                return 'Cart created.';
             } else {
                 await fs.promises.writeFile(this.file, JSON.stringify([{
-                    ...obj,
-                    id: 0
+                    cart_id: 0,
+                    timestamp: new Date().toLocaleString("en-US"),
+                    products: []
                 }]), 'utf-8');
 
-                return 'Object(s) created.';
+                return 'Cart created.';
             }
         } catch (error) {
             return error;
         }
     }
 
-    async modifyById(id, product) {
+    async save(obj, cart_id) {
         try {
-            let fileContent = await this.#readFile();
-            fileContent = await fileContent.map(e => {
-                if (e.id === id) {
-                    e = {
-                        ...product,
-                        id: id
-                    };
-                    return e;
-                } else {
-                    return e;
-                }
-            })
+            const fileContent = await this.#readFile();
+            fileContent[cart_id].products.push(obj);
             await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
-            return 'Object updated.';
+            return 'Object(s) created.';
         } catch (error) {
             return error;
         }
     }
 
-    async getById(id) {
+    /* async getById(id) {
         const fileContent = await this.#readFile();
         const element = fileContent.find(e => e.id === id)
         return element ? element : 0;
-    }
+    } */
 
-    async getAll() {
+    async getAll(cart_id) {
         try {
             const fileContent = await this.#readFile();
-            return fileContent;
+            return fileContent[cart_id].products;
         } catch (error) {
             return error;
         }
     }
 
-    async deleteById(id) {
+    /* async deleteById(id) {
         try {
             const fileContent = await this.#readFile();
             const fileCopy = Array.from(fileContent);
@@ -83,6 +75,7 @@ module.exports = class Products {
             if (element >= 0) {
                 fileCopy.splice(element, 1);
                 await fs.promises.writeFile(this.file, JSON.stringify([...fileCopy], null, 2), 'utf-8');
+
                 return 'Element removed.';
             } else {
                 return 'Element not found.';
@@ -90,13 +83,16 @@ module.exports = class Products {
         } catch (error) {
             return error;
         }
-    }
+    } */
 
-    async deleteAll() {
+    async emptyCart(cart_id) {
         try {
             const fileContent = await this.#readFile();
-            if (fileContent.length !== 0) {
-                await fs.promises.writeFile(this.file, JSON.stringify([]));
+            let cart = fileContent[cart_id].products;
+            if (cart.length !== 0) {
+                fileContent[cart_id].products = [];
+                await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
+
                 return 'Array cleared.';
             } else {
                 return 'Array is already empty.';
@@ -105,14 +101,18 @@ module.exports = class Products {
             return error;
         }
     }
-
-    async getRandomProduct() {
-        try {
-            const fileContent = await this.#readFile();
-            const randomProduct = fileContent[Math.floor(Math.random() * fileContent.length)];
-            return randomProduct;
-        } catch (error) {
-            return error;
-        }
-    }
 }
+
+const cart = new Cart('./src/databases/cart.json');
+
+const prod = {
+    name: "Eval plushy",
+    price: 0,
+    description: "A cute plushy."
+}
+
+async function call() {
+    console.log(await cart.getAll(2));
+}
+
+call();
