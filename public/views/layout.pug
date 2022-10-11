@@ -12,8 +12,17 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap", rel="stylesheet")
         script(src="/socket.io/socket.io.js")
     body
-        block form
-        block table
-        block chat
-        script(src="../scripts/prodRender.js")
-        script(src="../scripts/chatRender.js")
+        header 
+            section(class="navbar") 
+                div(class="btn-container")
+                    a(href='/', class="home-btn") Home
+                div(class="btn-container")
+                    a(href="/api/products", class="continue-btn") Registered Products
+                div(class="btn-container")
+                    a(href="/api/chat", class="chat-btn") Live Chat
+        main
+            block form
+            block table
+            block chat
+            script(src="../scripts/prodRender.js")
+            script(src="../scripts/chatRender.js")

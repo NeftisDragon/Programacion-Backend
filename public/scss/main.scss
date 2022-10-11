@@ -13,21 +13,30 @@ html {
     color: #ffffff;
 }
 
-body {
-    margin: 20px;
-}
-
 h1 {
     text-align: center;
     font-size: 42px;
     font-family: 'Ubuntu', sans-serif;
 }
 
-/*INDEX*/
-section {
+/*NavBar*/
+.navbar {
+    padding: 20px;
+    display: grid;
+    grid-template-areas: 'btn-container btn-container btn-container';
+    grid-template-columns: auto;
+    align-items: center;
+    background-color: #090c10;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.section {
     display: flex;
     align-items: center;
     flex-flow: column;
+    padding: 100px 30px 30px 30px;
 
     .prod-form {
         margin: 20px;
@@ -144,22 +153,22 @@ section {
     display: flex;
     justify-content: center;
 
-    .return-btn {
+    .home-btn {
         border: none;
         border-radius: 10px;
         padding: 10px 20px;
         font-size: 24px;
-        background-color: rgba(127, 255, 212, 0.558);
+        background-color: rgba(255, 204, 127, 0.558);
         text-decoration: none;
         color: #000000;
         font-family: sans-serif;
     }
 
-    .return-btn:hover {
-        background-color: rgb(127, 255, 212);
+    .home-btn:hover {
+        background-color: rgb(255, 204, 127);
     }
 
-    .return-btn:active {
+    .home-btn:active {
         background-color: rgba(162, 180, 174, 0.315);
     }
 
@@ -167,7 +176,7 @@ section {
         border: none;
         border-radius: 10px;
         padding: 10px 20px;
-        font-size: 18px;
+        font-size: 24px;
         background-color: rgba(127, 255, 212, 0.558);
         text-decoration: none;
         color: #000000;
@@ -183,11 +192,10 @@ section {
     }
 
     .chat-btn {
-        margin-top: 25px;
         border: none;
         border-radius: 10px;
         padding: 10px 20px;
-        font-size: 18px;
+        font-size: 24px;
         background-color: rgba(127, 227, 255, 0.558);
         text-decoration: none;
         color: #000000;

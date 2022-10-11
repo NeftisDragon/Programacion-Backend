@@ -1,7 +1,7 @@
 extends layout 
 block chat
-    h1 Riscord
-    section
+    section(class="section")
+        h1 Riscord
         div(class="message-area")
             div(id="messages")
             form(onsubmit="return newMessage()", class="chat-form", autocomplete="off")
@@ -11,5 +11,3 @@ block chat
                     input(type="text", name="message", placeholder="Message", id="input")
                 div
                     input(type="submit", value="Send", class="submit-btn-disabled", id="submit-btn")
-    div(class="btn-container")
-        a(href='/', class="return-btn") Return

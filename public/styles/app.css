@@ -11,43 +11,52 @@ html {
   background-color: #101414;
   color: #ffffff; }
 
-body {
-  margin: 20px; }
-
 h1 {
   text-align: center;
   font-size: 42px;
   font-family: 'Ubuntu', sans-serif; }
 
-/*INDEX*/
-section {
+/*NavBar*/
+.navbar {
+  padding: 20px;
+  display: grid;
+  grid-template-areas: 'btn-container btn-container btn-container';
+  grid-template-columns: auto;
+  align-items: center;
+  background-color: #090c10;
+  position: fixed;
+  width: 100%;
+  z-index: 2; }
+
+.section {
   display: flex;
   align-items: center;
-  flex-flow: column; }
-  section .prod-form {
+  flex-flow: column;
+  padding: 100px 30px 30px 30px; }
+  .section .prod-form {
     margin: 20px;
     background-color: #95A5A6;
     border-radius: 10px;
     padding: 20px;
     width: 400px;
     color: #000000; }
-    section .prod-form div {
+    .section .prod-form div {
       margin: 40px 20px; }
-      section .prod-form div label {
+      .section .prod-form div label {
         font-size: 16px; }
-      section .prod-form div input {
+      .section .prod-form div input {
         margin-top: 5px;
         font-size: 20px;
         border: none;
         padding: 5px;
         width: 350px; }
-      section .prod-form div .send-btn {
+      .section .prod-form div .send-btn {
         width: 360px;
         font-size: 24px; }
-      section .prod-form div .send-btn:hover {
+      .section .prod-form div .send-btn:hover {
         background-color: rgba(37, 241, 37, 0.901);
         color: #ffffff; }
-      section .prod-form div .send-btn:active {
+      .section .prod-form div .send-btn:active {
         background-color: #efefef90;
         color: initial; }
 
@@ -103,24 +112,24 @@ section {
 .btn-container {
   display: flex;
   justify-content: center; }
-  .btn-container .return-btn {
+  .btn-container .home-btn {
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
     font-size: 24px;
-    background-color: rgba(127, 255, 212, 0.558);
+    background-color: rgba(255, 204, 127, 0.558);
     text-decoration: none;
     color: #000000;
     font-family: sans-serif; }
-  .btn-container .return-btn:hover {
-    background-color: aquamarine; }
-  .btn-container .return-btn:active {
+  .btn-container .home-btn:hover {
+    background-color: #ffcc7f; }
+  .btn-container .home-btn:active {
     background-color: rgba(162, 180, 174, 0.315); }
   .btn-container .continue-btn {
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
     background-color: rgba(127, 255, 212, 0.558);
     text-decoration: none;
     color: #000000;
@@ -130,11 +139,10 @@ section {
   .btn-container .continue-btn:active {
     background-color: rgba(162, 180, 174, 0.315); }
   .btn-container .chat-btn {
-    margin-top: 25px;
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
     background-color: rgba(127, 227, 255, 0.558);
     text-decoration: none;
     color: #000000;

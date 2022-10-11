@@ -1,7 +1,7 @@
 extends layout
 block form
-    h1 New Product
-    section
+    section(class="section")
+        h1 New Product
         form(action="/api/", method="post", class="prod-form" id="prod-form")
             div
                 label(for="name") Name
@@ -18,6 +18,4 @@ block form
             div
                 input(type="submit", value="Send", class="send-btn")
         div(class="btn-container")
-            a(href="/api/products", class="continue-btn") Registered Products
-        div(class="btn-container")
-            a(href="/api/chat", class="chat-btn") Live Chat
+            a(href="/api/products", class="continue-btn") View Products
