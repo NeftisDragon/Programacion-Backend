@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 io.on('connection', async (socket) => {
     console.log('User connected.');
 
-    socket.emit('products', products.getAll());
+    socket.emit('products', await products.getAll());
     socket.on('newProduct', async (product) => {
         await products.save(product);
         io.sockets.emit('products', await products.getAll());

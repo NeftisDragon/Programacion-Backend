@@ -2,7 +2,7 @@ const server = io.connect();
 
 server.on('products', (products) => {
     if (!products.length) {
-        document.getElementById('products').innerHTML = `<h2>No products found.</h2>`;
+        document.getElementById('products').innerHTML = `<h2 class="error-message">No products found.</h2>`;
     } else {
         document.getElementById('products').innerHTML = renderTable(products);
     }
@@ -37,14 +37,14 @@ const newProduct = () => {
 }
 
 const renderTable = (products) => {
-    let table = `<div class="table-header">`;
+    let table = `<div class="table">`;
     table +=
         `
         <ul>
             <li class="table-header">
-                <div class="col col1">NAME</div>
-                <div class="col col2">PRICE</div>
-                <div class="col col3">OVERVIEW</div>
+                <div class="col col-1">NAME</div>
+                <div class="col col-2">PRICE</div>
+                <div class="col col-3">OVERVIEW</div>
             </li>
         </ul>
         `;
@@ -54,55 +54,13 @@ const renderTable = (products) => {
         table +=
             `
             <li class="table-row">
-                <div class="col col1">${product.name}</div>
-                <div class="col col2">${product.price}}</div>
-                <div class="col col3">${product.overview}</div>
+                <div class="col col-1">${product.name}</div>
+                <div class="col col-2">${product.price}</div>
+                <div class="col col-3"><img src=${product.overview} alt=${product.name} class="product-overview"></div>
             </li>
             `;
     })
     table += `</ul></div>`
-
-    /* `
-    <div class="table">
-        <ul>
-            <li class="table-header">
-                <div class="col col1">NAME</div>
-                <div class="col col2">PRICE</div>
-                <div class="col col3">OVERVIEW</div>
-            </li>
-        </ul>
-        <ul id="render">
-        </ul>
-    </div>
-    `;
-
-    let prodRender = document.getElementById('render');
-
-    for (const product of products) {
-        let render = createElement('li');
-        prodRender.appendChild(render);
-        render.className = "table-row";
-        render.innerHTML = 
-        `
-        <li class="table-row">
-            <div class="col col1">${product.name}</div>
-            <div class="col col2">${product.price}}</div>
-            <div class="col col3">${product.overview}</div>
-        </li>
-        `;
-    } */
-
-    /* document.getElementById('render');
-    products.forEach(product => {
-        table += `
-        <li class="table-row">
-        <div class="col col1">${product.name}</div>
-        <div class="col col2">${product.price}}</div>
-        <div class="col col3">${product.overview}</div>
-        </li>
-        
-        `
-    }) */
 
     return document.getElementById('products').innerHTML = table;
 }
