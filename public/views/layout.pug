@@ -13,16 +13,19 @@ html(lang="en")
         script(src="/socket.io/socket.io.js")
     body
         header 
-            section(class="navbar") 
+            nav(class="navbar") 
                 div(class="btn-container")
                     a(href='/', class="home-btn") Home
                 div(class="btn-container")
-                    a(href="/api/products", class="continue-btn") Registered Products
+                    a(href="/api/products", class="continue-btn") Products
                 div(class="btn-container")
                     a(href="/api/chat", class="chat-btn") Live Chat
+                div(class="btn-container")
+                    a(href="/api/cart", class="cart-btn") Cart
         main
             block form
-            block table
+            block cards
             block chat
+            block cart
             script(src="../scripts/prodRender.js")
             script(src="../scripts/chatRender.js")

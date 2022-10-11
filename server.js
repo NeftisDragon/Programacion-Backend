@@ -14,10 +14,10 @@ const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
 const Products = require('./src/controllers/products.js');
-const products = new Products('./src/utils/data.json');
+const products = new Products('./src/databases/data.json');
 
 const Chat = require('./src/controllers/chat.js');
-const chat = new Chat('./src/utils/chat.json');
+const chat = new Chat('./src/databases/chat.json');
 
 app.use(express.static('public'));
 app.use(express.json());

@@ -2,8 +2,7 @@
     RESET
 ************/
 * {
-  margin: 0px;
-  font-size: 16px; }
+  margin: 0px; }
 
 html {
   scroll-behavior: smooth;
@@ -16,11 +15,15 @@ h1 {
   font-size: 42px;
   font-family: 'Ubuntu', sans-serif; }
 
+.img-fluid {
+  max-width: 100%;
+  height: auto; }
+
 /*NavBar*/
 .navbar {
   padding: 20px;
   display: grid;
-  grid-template-areas: 'btn-container btn-container btn-container';
+  grid-template-areas: 'btn-container btn-container btn-container btn-container';
   grid-template-columns: auto;
   align-items: center;
   background-color: #090c10;
@@ -28,6 +31,7 @@ h1 {
   width: 100%;
   z-index: 2; }
 
+/*INDEX*/
 .section {
   display: flex;
   align-items: center;
@@ -60,7 +64,51 @@ h1 {
         background-color: #efefef90;
         color: initial; }
 
-/*FORM*/
+/*CARDS*/
+#products {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: inline-block;
+  justify-content: center;
+  align-items: center; }
+  #products .card {
+    width: 350px;
+    display: block;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: #a6a495;
+    color: #000000; }
+    #products .card .prod-title {
+      font-size: 22px;
+      margin: 10px 20px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    #products .card .prod-overview {
+      width: 330px; }
+    #products .card .card-bottom {
+      background-color: #95A5A6;
+      border-radius: 5px;
+      padding: 10px; }
+      #products .card .card-bottom .prod-price {
+        font-size: 20px;
+        margin-top: 10px; }
+      #products .card .card-bottom .btn-container {
+        margin: 15px; }
+        #products .card .card-bottom .btn-container .card-button {
+          background-color: #74fefe80;
+          padding: 10px;
+          font-size: 24px;
+          border-radius: 10px;
+          cursor: pointer; }
+        #products .card .card-bottom .btn-container .card-button:hover {
+          background-color: #74fefe; }
+        #products .card .card-bottom .btn-container .card-button:active {
+          background-color: #ffffff55; }
+
+/*CART*/
 .table {
   width: 1000px;
   margin: 20px auto 0 auto;
@@ -107,50 +155,6 @@ h1 {
   margin: 60px;
   font-size: 36px;
   opacity: 40%; }
-
-/*Buttons*/
-.btn-container {
-  display: flex;
-  justify-content: center; }
-  .btn-container .home-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 24px;
-    background-color: rgba(255, 204, 127, 0.558);
-    text-decoration: none;
-    color: #000000;
-    font-family: sans-serif; }
-  .btn-container .home-btn:hover {
-    background-color: #ffcc7f; }
-  .btn-container .home-btn:active {
-    background-color: rgba(162, 180, 174, 0.315); }
-  .btn-container .continue-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 24px;
-    background-color: rgba(127, 255, 212, 0.558);
-    text-decoration: none;
-    color: #000000;
-    font-family: sans-serif; }
-  .btn-container .continue-btn:hover {
-    background-color: aquamarine; }
-  .btn-container .continue-btn:active {
-    background-color: rgba(162, 180, 174, 0.315); }
-  .btn-container .chat-btn {
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-size: 24px;
-    background-color: rgba(127, 227, 255, 0.558);
-    text-decoration: none;
-    color: #000000;
-    font-family: sans-serif; }
-  .btn-container .chat-btn:hover {
-    background-color: #7ffffd; }
-  .btn-container .chat-btn:active {
-    background-color: rgba(162, 180, 174, 0.315); }
 
 /*CHAT*/
 .message-area {
@@ -204,3 +208,60 @@ h1 {
         font-size: 10px; }
       .message-area #messages .message .input {
         margin-top: 5px; }
+
+/*Buttons*/
+.btn-container {
+  display: flex;
+  justify-content: center; }
+  .btn-container .home-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgba(255, 204, 127, 0.558);
+    text-decoration: none;
+    color: #000000;
+    font-family: sans-serif; }
+  .btn-container .home-btn:hover {
+    background-color: #ffcc7f; }
+  .btn-container .home-btn:active {
+    background-color: rgba(162, 180, 174, 0.315); }
+  .btn-container .continue-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgba(127, 255, 212, 0.558);
+    text-decoration: none;
+    color: #000000;
+    font-family: sans-serif; }
+  .btn-container .continue-btn:hover {
+    background-color: aquamarine; }
+  .btn-container .continue-btn:active {
+    background-color: rgba(162, 180, 174, 0.315); }
+  .btn-container .chat-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgba(127, 227, 255, 0.558);
+    text-decoration: none;
+    color: #000000;
+    font-family: sans-serif; }
+  .btn-container .chat-btn:hover {
+    background-color: #7ffffd; }
+  .btn-container .chat-btn:active {
+    background-color: rgba(162, 180, 174, 0.315); }
+  .btn-container .cart-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: rgba(255, 127, 255, 0.558);
+    text-decoration: none;
+    color: #000000;
+    font-family: sans-serif; }
+  .btn-container .cart-btn:hover {
+    background-color: #ff7ff4; }
+  .btn-container .cart-btn:active {
+    background-color: rgba(162, 180, 174, 0.315); }

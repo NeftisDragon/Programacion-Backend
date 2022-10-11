@@ -37,7 +37,26 @@ const newProduct = () => {
 }
 
 const renderTable = (products) => {
-    let table = `<div class="table">`;
+    let card = ' ';
+    products.forEach(product => {
+        card +=
+            `
+            <div class="card">
+                <h2 class="prod-title">${product.name}</h2>
+                <img src=${product.overview} alt=${product.name} class="prod-overview img-fluid">
+                <hr>
+                <div class="card-bottom">
+                    <h3 class="prod-price">$${product.price}</h3>
+                    <div class="btn-container">
+                        <a class="card-button">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+            `;
+        card += `</div>`;
+    })
+
+    /* let table = `<div class="table">`;
     table +=
         `
         <ul>
@@ -60,7 +79,7 @@ const renderTable = (products) => {
             </li>
             `;
     })
-    table += `</ul></div>`
+    table += `</ul></div>` */
 
-    return document.getElementById('products').innerHTML = table;
+    return document.getElementById('products').innerHTML = card;
 }

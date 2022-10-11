@@ -3,7 +3,6 @@
 ************/
 * {
     margin: 0px;
-    font-size: 16px;
 }
 
 html {
@@ -19,11 +18,16 @@ h1 {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
 /*NavBar*/
 .navbar {
     padding: 20px;
     display: grid;
-    grid-template-areas: 'btn-container btn-container btn-container';
+    grid-template-areas: 'btn-container btn-container btn-container btn-container';
     grid-template-columns: auto;
     align-items: center;
     background-color: #090c10;
@@ -32,6 +36,7 @@ h1 {
     z-index: 2;
 }
 
+/*INDEX*/
 .section {
     display: flex;
     align-items: center;
@@ -79,7 +84,70 @@ h1 {
     }
 }
 
-/*FORM*/
+/*CARDS*/
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: inline-block;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+        width: 350px;
+        display: block;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        margin: 20px;
+        background-color: #a6a495;
+        color: #000000;
+
+        .prod-title {
+            font-size: 22px;
+            margin: 10px 20px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .prod-overview {
+            width: 330px;
+        }
+
+        .card-bottom {
+            background-color: #95A5A6;
+            border-radius: 5px;
+            padding: 10px;
+
+            .prod-price {
+                font-size: 20px;
+                margin-top: 10px;
+            }
+
+            .btn-container {
+                margin: 15px;
+
+                .card-button {
+                    background-color: #74fefe80;
+                    padding: 10px;
+                    font-size: 24px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+
+                .card-button:hover {
+                    background-color: #74fefe;
+                }
+
+                .card-button:active {
+                    background-color: #ffffff55;
+                }
+            }
+        }
+    }
+}
+
+/*CART*/
 .table {
     width: 1000px;
     margin: 20px auto 0 auto;
@@ -99,7 +167,7 @@ h1 {
             align-items: center;
 
         }
-        
+
         .table-header {
             background-color: #95A5A6;
             font-size: 14px;
@@ -108,7 +176,7 @@ h1 {
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
             text-align: left;
         }
-        
+
         .table-row {
             background-color: #a6a495;
             font-size: 14px;
@@ -116,7 +184,7 @@ h1 {
             letter-spacing: 0.03em;
             box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
             text-align: left;
-            
+
             div {
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -146,69 +214,6 @@ h1 {
     margin: 60px;
     font-size: 36px;
     opacity: 40%;
-}
-
-/*Buttons*/
-.btn-container {
-    display: flex;
-    justify-content: center;
-
-    .home-btn {
-        border: none;
-        border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 24px;
-        background-color: rgba(255, 204, 127, 0.558);
-        text-decoration: none;
-        color: #000000;
-        font-family: sans-serif;
-    }
-
-    .home-btn:hover {
-        background-color: rgb(255, 204, 127);
-    }
-
-    .home-btn:active {
-        background-color: rgba(162, 180, 174, 0.315);
-    }
-
-    .continue-btn {
-        border: none;
-        border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 24px;
-        background-color: rgba(127, 255, 212, 0.558);
-        text-decoration: none;
-        color: #000000;
-        font-family: sans-serif;
-    }
-
-    .continue-btn:hover {
-        background-color: rgb(127, 255, 212);
-    }
-
-    .continue-btn:active {
-        background-color: rgba(162, 180, 174, 0.315);
-    }
-
-    .chat-btn {
-        border: none;
-        border-radius: 10px;
-        padding: 10px 20px;
-        font-size: 24px;
-        background-color: rgba(127, 227, 255, 0.558);
-        text-decoration: none;
-        color: #000000;
-        font-family: sans-serif;
-    }
-
-    .chat-btn:hover {
-        background-color: rgb(127, 255, 253);
-    }
-
-    .chat-btn:active {
-        background-color: rgba(162, 180, 174, 0.315);
-    }
 }
 
 /*CHAT*/
@@ -286,5 +291,87 @@ h1 {
                 margin-top: 5px;
             }
         }
+    }
+}
+
+/*Buttons*/
+.btn-container {
+    display: flex;
+    justify-content: center;
+
+    .home-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: rgba(255, 204, 127, 0.558);
+        text-decoration: none;
+        color: #000000;
+        font-family: sans-serif;
+    }
+
+    .home-btn:hover {
+        background-color: rgb(255, 204, 127);
+    }
+
+    .home-btn:active {
+        background-color: rgba(162, 180, 174, 0.315);
+    }
+
+    .continue-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: rgba(127, 255, 212, 0.558);
+        text-decoration: none;
+        color: #000000;
+        font-family: sans-serif;
+    }
+
+    .continue-btn:hover {
+        background-color: rgb(127, 255, 212);
+    }
+
+    .continue-btn:active {
+        background-color: rgba(162, 180, 174, 0.315);
+    }
+
+    .chat-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: rgba(127, 227, 255, 0.558);
+        text-decoration: none;
+        color: #000000;
+        font-family: sans-serif;
+    }
+
+    .chat-btn:hover {
+        background-color: rgb(127, 255, 253);
+    }
+
+    .chat-btn:active {
+        background-color: rgba(162, 180, 174, 0.315);
+    }
+
+    .cart-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 24px;
+        background-color: rgba(255, 127, 255, 0.558);
+        text-decoration: none;
+        color: #000000;
+        font-family: sans-serif;
+    }
+
+    .cart-btn:hover {
+        background-color: rgb(255, 127, 244);
+    }
+
+    .cart-btn:active {
+        background-color: rgba(162, 180, 174, 0.315);
     }
 }

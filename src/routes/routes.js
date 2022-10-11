@@ -6,7 +6,11 @@ const {
 
 const router = Router();
 
-const container = new Container('./src/utils/data.json');
+const container = new Container('./src/databases/data.json');
+
+router.get('/chat', async (req, res) => {
+    res.render('chat');
+})
 
 router.post('/', async (req, res) => {
     const saveProduct = req.body;
@@ -15,14 +19,10 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/products', async (req, res) => {
-    res.render('table', {
+    res.render('cards', {
         products: await container.getAll(),
         message: "No products found"
     });
-})
-
-router.get('/chat', async (req, res) => {
-    res.render('chat');
 })
 
 router.get('/products/:id', async (req, res) => {
@@ -68,6 +68,10 @@ router.delete('/products/:id', async (req, res) => {
 
     id = parseInt(id);
     res.status(201).send(await container.deleteById(id));
+})
+
+router.get('/cart', async (req, res) => {
+    res.render('cart');
 })
 
 module.exports = router;
