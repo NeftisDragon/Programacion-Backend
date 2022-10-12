@@ -61,9 +61,13 @@ module.exports = class Products {
     }
 
     async getById(id) {
-        const fileContent = await this.#readFile();
-        const element = fileContent.find(e => e.id === id)
-        return element ? element : 0;
+        try {
+            const fileContent = await this.#readFile();
+            const element = fileContent.find(e => e.id === id)
+            return element ? element : 0;
+        } catch (error) {
+            return error;
+        }
     }
 
     async getAll() {
@@ -83,6 +87,7 @@ module.exports = class Products {
             if (element >= 0) {
                 fileCopy.splice(element, 1);
                 await fs.promises.writeFile(this.file, JSON.stringify([...fileCopy], null, 2), 'utf-8');
+                
                 return 'Element removed.';
             } else {
                 return 'Element not found.';
@@ -96,10 +101,10 @@ module.exports = class Products {
         try {
             const fileContent = await this.#readFile();
             if (fileContent.length !== 0) {
-                await fs.promises.writeFile(this.file, JSON.stringify([]));
+                await fs.promises.writeFile(this.file, JSON.stringify([])); 
                 return 'Array cleared.';
             } else {
-                return 'Array is already empty.';
+                return 'Array already empty.';
             }
         } catch (error) {
             return error;

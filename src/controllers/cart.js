@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class Cart {
+module.exports = class Cart {
     constructor(file) {
         this.file = file;
     }
@@ -46,17 +46,21 @@ class Cart {
             fileContent[cart_id].products.push(obj);
             await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
-            return 'Object(s) created.';
+            return 'Product added!';
         } catch (error) {
             return error;
         }
     }
 
-    /* async getById(id) {
-        const fileContent = await this.#readFile();
-        const element = fileContent.find(e => e.id === id)
-        return element ? element : 0;
-    } */
+    async getById(cart_id, id) {
+        try {
+            const fileContent = await this.#readFile();
+            let element = fileContent[cart_id].products[id];
+            return element ? element : 'No product matches the ID.';
+        } catch (error) {
+            return error;
+        }
+    }
 
     async getAll(cart_id) {
         try {
@@ -67,23 +71,25 @@ class Cart {
         }
     }
 
-    /* async deleteById(id) {
+    async removeById(cart_id, id) {
         try {
             const fileContent = await this.#readFile();
             const fileCopy = Array.from(fileContent);
-            const element = fileCopy.findIndex(obj => obj.id === id);
+            let cart = fileCopy[cart_id].products;
+            let element = cart.findIndex(obj => obj.id === id);
             if (element >= 0) {
-                fileCopy.splice(element, 1);
+                cart.splice(element, 1);
+                fileCopy.push(cart);
                 await fs.promises.writeFile(this.file, JSON.stringify([...fileCopy], null, 2), 'utf-8');
 
-                return 'Element removed.';
+                return 'Product removed.';
             } else {
-                return 'Element not found.';
+                return 'Product not found.';
             }
         } catch (error) {
             return error;
         }
-    } */
+    }
 
     async emptyCart(cart_id) {
         try {
@@ -93,26 +99,12 @@ class Cart {
                 fileContent[cart_id].products = [];
                 await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
-                return 'Array cleared.';
+                return 'Cart cleared.';
             } else {
-                return 'Array is already empty.';
+                return 'Cart already empty.';
             }
         } catch (error) {
             return error;
         }
     }
 }
-
-const cart = new Cart('./src/databases/cart.json');
-
-const prod = {
-    name: "Eval plushy",
-    price: 0,
-    description: "A cute plushy."
-}
-
-async function call() {
-    console.log(await cart.getAll(2));
-}
-
-call();
