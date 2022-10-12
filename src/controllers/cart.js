@@ -15,12 +15,12 @@ module.exports = class Cart {
         }
     }
 
-    async newCart() {
+    async newCart(cart_id) {
         try {
             const fileContent = await this.#readFile();
             if (fileContent.length !== 0) {
                 await fs.promises.writeFile(this.file, JSON.stringify([...fileContent, {
-                    cart_id: fileContent[fileContent.length - 1].cart_id + 1,
+                    cart_id: cart_id,
                     timestamp: new Date().toLocaleString("en-US"),
                     products: []
                 }], null, 2), 'utf-8');
@@ -28,7 +28,7 @@ module.exports = class Cart {
                 return 'Cart created.';
             } else {
                 await fs.promises.writeFile(this.file, JSON.stringify([{
-                    cart_id: 0,
+                    cart_id: cart_id,
                     timestamp: new Date().toLocaleString("en-US"),
                     products: []
                 }]), 'utf-8');

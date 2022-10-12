@@ -43,6 +43,7 @@ if (user.value.length === 0 || input.value.length === 0) {
     })
 })
 
+//Issue 4: page refreshes on message sent, causing server to restart:
 function newMessage() {
     const message = {
         user: user.value,
@@ -53,3 +54,4 @@ function newMessage() {
     input.focus();
     return false;
 }
+//Issue 4 end.
