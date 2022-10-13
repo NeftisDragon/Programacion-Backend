@@ -44,10 +44,14 @@ module.exports = class Cart {
         try {
             const fileContent = await this.#readFile();
             const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            fileContent[i].products.push(obj);
-            await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
+            if (!i) {
+                fileContent[i].products.push(obj);
+                await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
-            return 'Product added!';
+                return 'Product added!';
+            } else {
+                return 'Cart not found.'
+            }
         } catch (error) {
             return error;
         }
@@ -57,9 +61,13 @@ module.exports = class Cart {
         try {
             const fileContent = await this.#readFile();
             const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            const index = fileContent[i].products.indexOf(fileContent[i].products.find(item => item.id === id));
-            let element = fileContent[i].products[index];
-            return element ? element : 'No product matches the ID.';
+            if (!i) {
+                const index = fileContent[i].products.indexOf(fileContent[i].products.find(item => item.id === id));
+                let element = fileContent[i].products[index];
+                return element ? element : 'No product matches the ID.';
+            } else {
+                return 'Cart not found.'
+            }
         } catch (error) {
             return error;
         }
@@ -69,7 +77,11 @@ module.exports = class Cart {
         try {
             const fileContent = await this.#readFile();
             const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id))
-            return fileContent[i].products;
+            if (!i) {
+                return fileContent[i].products;
+            } else {
+                return 'Cart not found.'
+            }
         } catch (error) {
             return error;
         }
@@ -79,16 +91,20 @@ module.exports = class Cart {
         try {
             const fileContent = await this.#readFile();
             const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            let cart = fileContent[i].products;
-            let element = cart.findIndex(obj => obj.id === id);
-            if (element >= 0) {
-                cart.splice(element, 1);
-                fileContent[i].products = cart;
-                await fs.promises.writeFile(this.file, JSON.stringify([...fileContent], null, 2), 'utf-8');
+            if (!i) {
+                let cart = fileContent[i].products;
+                let element = cart.findIndex(obj => obj.id === id);
+                if (element >= 0) {
+                    cart.splice(element, 1);
+                    fileContent[i].products = cart;
+                    await fs.promises.writeFile(this.file, JSON.stringify([...fileContent], null, 2), 'utf-8');
 
-                return 'Product removed.';
+                    return 'Product removed.';
+                } else {
+                    return 'Product not found.';
+                }
             } else {
-                return 'Product not found.';
+                return 'Cart not found.'
             }
         } catch (error) {
             return error;
@@ -99,14 +115,18 @@ module.exports = class Cart {
         try {
             const fileContent = await this.#readFile();
             const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            let cart = fileContent[i].products;
-            if (cart.length !== 0) {
-                fileContent[i].products = [];
-                await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
+            if (!i) {
+                let cart = fileContent[i].products;
+                if (cart.length !== 0) {
+                    fileContent[i].products = [];
+                    await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
-                return 'Cart cleared.';
+                    return 'Cart cleared.';
+                } else {
+                    return 'Cart already empty.';
+                }
             } else {
-                return 'Cart already empty.';
+                return 'Cart not found.'
             }
         } catch (error) {
             return error;
