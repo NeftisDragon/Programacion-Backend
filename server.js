@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-app.get('*', (req, res) => {
+app.all('*', (req, res) => {
     res.status(404).send({
         Error: 'Path not found.'
     })
