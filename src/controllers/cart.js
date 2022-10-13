@@ -43,9 +43,9 @@ module.exports = class Cart {
     async save(obj, cart_id) {
         try {
             const fileContent = await this.#readFile();
-            const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            if (!i) {
-                fileContent[i].products.push(obj);
+            const index = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
+            if (!index) {
+                fileContent[index].products.push(obj);
                 await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
                 return 'Product added!';
@@ -60,10 +60,10 @@ module.exports = class Cart {
     async getById(cart_id, id) {
         try {
             const fileContent = await this.#readFile();
-            const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            if (!i) {
-                const index = fileContent[i].products.indexOf(fileContent[i].products.find(item => item.id === id));
-                let element = fileContent[i].products[index];
+            const index = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
+            if (!index) {
+                const i = fileContent[index].products.indexOf(fileContent[index].products.find(item => item.id === id));
+                let element = fileContent[index].products[i];
                 return element ? element : 'No product matches the ID.';
             } else {
                 return 'Cart not found.'
@@ -76,9 +76,9 @@ module.exports = class Cart {
     async getAll(cart_id) {
         try {
             const fileContent = await this.#readFile();
-            const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id))
-            if (!i) {
-                return fileContent[i].products;
+            const index = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id))
+            if (!index) {
+                return fileContent[index].products;
             } else {
                 return 'Cart not found.'
             }
@@ -90,13 +90,13 @@ module.exports = class Cart {
     async removeById(cart_id, id) {
         try {
             const fileContent = await this.#readFile();
-            const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            if (!i) {
-                let cart = fileContent[i].products;
+            const index = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
+            if (!index) {
+                let cart = fileContent[index].products;
                 let element = cart.findIndex(obj => obj.id === id);
                 if (element >= 0) {
                     cart.splice(element, 1);
-                    fileContent[i].products = cart;
+                    fileContent[index].products = cart;
                     await fs.promises.writeFile(this.file, JSON.stringify([...fileContent], null, 2), 'utf-8');
 
                     return 'Product removed.';
@@ -114,11 +114,11 @@ module.exports = class Cart {
     async emptyCart(cart_id) {
         try {
             const fileContent = await this.#readFile();
-            const i = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
-            if (!i) {
-                let cart = fileContent[i].products;
+            const index = fileContent.indexOf(fileContent.find(item => item.cart_id === cart_id));
+            if (!index) {
+                let cart = fileContent[index].products;
                 if (cart.length !== 0) {
-                    fileContent[i].products = [];
+                    fileContent[index].products = [];
                     await fs.promises.writeFile(this.file, JSON.stringify(fileContent, null, 2), 'utf-8');
 
                     return 'Cart cleared.';
