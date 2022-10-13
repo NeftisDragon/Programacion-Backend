@@ -5,6 +5,8 @@ const {
 
 const router = Router();
 
+var admin = true;
+
 const Cart = require('../controllers/cart.js');
 const cart = new Cart('./src/databases/cart.json');
 
@@ -24,7 +26,7 @@ var cart_id = '';
 router.get('/cart', async (req, res) => {
     res.render('cart');
     cart_id = randomId();
-    res.status(201).send(await cart.newCart(cart_id));
+    return res.status(201).send(await cart.newCart(cart_id));
 })
 
 router.delete('/cart/:cart_id', async (req, res) => {
@@ -33,7 +35,7 @@ router.delete('/cart/:cart_id', async (req, res) => {
     } = req.params;
 
     cart_id = parseInt(cart_id);
-    res.status(201).send(await cart.emptyCart(cart_id));
+    return res.status(201).send(await cart.emptyCart(cart_id));
 })
 
 router.get('/cart/:cart_id/products', async (req, res) => {
@@ -42,7 +44,7 @@ router.get('/cart/:cart_id/products', async (req, res) => {
     } = req.params;
 
     cart_id = parseInt(cart_id);
-    res.status(200).send(await cart.getAll(cart_id));
+    return res.status(200).send(await cart.getAll(cart_id));
 })
 
 router.post('/cart/:cart_id/products', async (req, res) => {
@@ -53,7 +55,7 @@ router.post('/cart/:cart_id/products', async (req, res) => {
     cart_id = parseInt(cart_id);
     let [id] = req.body;
     let item = await container.getById(id);
-    res.status(201).send(await cart.save(item, cart_id));
+    return res.status(201).send(await cart.save(item, cart_id));
 })
 
 router.delete('/cart/:cart_id/products/:id', async (req, res) => {
@@ -64,23 +66,23 @@ router.delete('/cart/:cart_id/products/:id', async (req, res) => {
 
     cart_id = parseInt(cart_id);
     id = parseInt(id);
-    res.status(201).send(await cart.removeById(cart_id, id));
+    return res.status(201).send(await cart.removeById(cart_id, id));
 })
 
 //Chat -->
 router.get('/chat', async (req, res) => {
-    res.render('chat');
+    return res.render('chat');
 })
 
 //Products -->
 router.post('/', async (req, res) => {
     const saveProduct = req.body;
     await container.save(saveProduct);
-    res.status(201).redirect('/api/products');
+    return res.status(201).redirect('/api/products');
 })
 
 router.get('/products', async (req, res) => {
-    res.render('cards', {
+    return res.render('cards', {
         products: await container.getAll(),
         message: "No products found"
     });
@@ -95,40 +97,52 @@ router.get('/products/:id', async (req, res) => {
 
     const product = await container.getById(id);
     if (product === 0) {
-        res.status(400).send({
+        return res.status(400).send({
             error: 'Product not found.'
         });
     } else {
-        res.status(200).send(product);
+        return res.status(200).send(product);
     }
 })
 
 router.put('/products/:id', async (req, res) => {
-    let {
-        id
-    } = req.params;
+    if (admin === true) {
+        let {
+            id
+        } = req.params;
 
-    id = parseInt(id);
+        id = parseInt(id);
 
-    let product = await container.getById(id);
+        let product = await container.getById(id);
 
-    if (product === 0) {
-        res.status(400).send({
-            error: 'Product not found.'
-        });
+        if (product === 0) {
+            return res.status(400).send({
+                error: 'Product not found.'
+            });
+        } else {
+            product = req.body;
+            return res.status(201).send(await container.modifyById(id, product));
+        }
     } else {
-        product = req.body;
-        res.status(201).send(await container.modifyById(id, product));
+        return res.status(401).send({
+            Error: 'Missing or insufficient permissions.'
+        });
     }
 })
 
 router.delete('/products/:id', async (req, res) => {
-    let {
-        id
-    } = req.params;
+    if (admin === true) {
+        let {
+            id
+        } = req.params;
 
-    id = parseInt(id);
-    res.status(201).send(await container.deleteById(id));
+        id = parseInt(id);
+        return res.status(201).send(await container.deleteById(id));
+    } else {
+        return res.status(401).send({
+            Error: 'Missing or insufficient permissions.'
+        });
+    }
 })
 
 module.exports = router;
