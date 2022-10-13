@@ -32,6 +32,12 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+app.get('*', (req, res) => {
+    res.status(404).send({
+        Error: 'Path not found.'
+    })
+})
+
 //Issue 1: Triggers 2 connections, one for each render.js in /public/scripts:
 io.on('connection', async (socket) => {
     console.log('User connected.');
