@@ -1,4 +1,3 @@
-const Container = require('../controllers/products.js');
 const express = require('express');
 const {
     Router
@@ -6,12 +5,74 @@ const {
 
 const router = Router();
 
+const Cart = require('../controllers/cart.js');
+const cart = new Cart('./src/databases/cart.json');
+
+const Container = require('../controllers/products.js');
 const container = new Container('./src/databases/data.json');
 
+const randomId = () => {
+    min = Math.ceil(0);
+    max = Math.floor(10000);
+    const cart_id = Math.floor(Math.random() * (max - min + 1)) + min;
+    return cart_id;
+}
+
+var cart_id = '';
+
+//Cart -->
+router.get('/cart', async (req, res) => {
+    res.render('cart');
+    cart_id = randomId();
+    res.status(201).send(await cart.newCart(cart_id));
+})
+
+router.delete('/cart/:cart_id', async (req, res) => {
+    let {
+        cart_id
+    } = req.params;
+
+    cart_id = parseInt(cart_id);
+    res.status(201).send(await cart.emptyCart(cart_id));
+})
+
+router.get('/cart/:cart_id/products', async (req, res) => {
+    let {
+        cart_id
+    } = req.params;
+
+    cart_id = parseInt(cart_id);
+    res.status(200).send(await cart.getAll(cart_id));
+})
+
+router.post('/cart/:cart_id/products', async (req, res) => {
+    let {
+        cart_id
+    } = req.params;
+
+    cart_id = parseInt(cart_id);
+    let [id] = req.body;
+    let item = await container.getById(id);
+    res.status(201).send(await cart.save(item, cart_id));
+})
+
+router.delete('/cart/:cart_id/products/:id', async (req, res) => {
+    let {
+        cart_id,
+        id
+    } = req.params;
+
+    cart_id = parseInt(cart_id);
+    id = parseInt(id);
+    res.status(201).send(await cart.removeById(cart_id, id));
+})
+
+//Chat -->
 router.get('/chat', async (req, res) => {
     res.render('chat');
 })
 
+//Products -->
 router.post('/', async (req, res) => {
     const saveProduct = req.body;
     await container.save(saveProduct);
@@ -69,9 +130,4 @@ router.delete('/products/:id', async (req, res) => {
     id = parseInt(id);
     res.status(201).send(await container.deleteById(id));
 })
-
-router.get('/cart', async (req, res) => {
-    res.render('cart');
-})
-
 module.exports = router;
