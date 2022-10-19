@@ -7,11 +7,11 @@ const router = Router();
 
 var admin = true;
 
-const Cart = require('../controllers/cart.js');
+const Cart = require('../containers/cart.container.js');
 const cart = new Cart('./src/databases/cart.json');
 
-const Container = require('../controllers/products.js');
-const container = new Container('./src/databases/data.json');
+const Container = require('../containers/products.container.js');
+const container = new Container('./src/databases/products.json');
 
 const randomId = () => {
     min = Math.ceil(0);
@@ -97,7 +97,7 @@ router.get('/products/:id', async (req, res) => {
 
     const product = await container.getById(id);
     if (product === 0) {
-        return res.status(400).send({
+        return res.status(404).send({
             error: 'Product not found.'
         });
     } else {
@@ -116,7 +116,7 @@ router.put('/products/:id', async (req, res) => {
         let product = await container.getById(id);
 
         if (product === 0) {
-            return res.status(400).send({
+            return res.status(404).send({
                 error: 'Product not found.'
             });
         } else {
@@ -138,6 +138,16 @@ router.delete('/products/:id', async (req, res) => {
 
         id = parseInt(id);
         return res.status(201).send(await container.deleteById(id));
+    } else {
+        return res.status(401).send({
+            Error: 'Missing or insufficient permissions.'
+        });
+    }
+})
+
+router.delete('/products', async (req, res) => {
+    if (admin === true) {
+        res.status(201).send(await container.deleteAll());
     } else {
         return res.status(401).send({
             Error: 'Missing or insufficient permissions.'

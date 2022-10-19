@@ -12,10 +12,10 @@ const {
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
-const Products = require('./src/controllers/products.js');
-const products = new Products('./src/databases/data.json');
+const Products = require('./src/containers/products.container.js');
+const products = new Products('./src/databases/products.json');
 
-const Chat = require('./src/controllers/chat.js');
+const Chat = require('./src/containers/chat.container.js');
 const chat = new Chat('./src/databases/chat.json');
 
 app.use(express.static('public'));
