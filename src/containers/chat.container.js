@@ -27,13 +27,15 @@ module.exports = class Chat {
     async save(message) {
         try {
             let messages = await this.getAll();
-            message.date = new Date().toLocaleString("en-US", {timeStyle: "short"});
+            message.date = new Date().toLocaleString("en-US", {
+                timeStyle: "short"
+            });
             messages.push(message);
             await fs.promises.writeFile(this.file, JSON.stringify(messages, null, '\t'));
 
-            return 'Message saved successfully.';
+            return 'Message sent.';
         } catch (error) {
-            return ('Failed to save message.', error);
+            return ('Failed to send message.', error);
         }
     }
 }
