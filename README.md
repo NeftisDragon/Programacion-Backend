@@ -3,8 +3,6 @@
 
 I created this repository to post all the assignments I'm working on for my Backend course.
 
-"clase(number)" refers to each different assignment.
-
 ### Known issues:
 
 **1** io.on triggers 2 connections, one for each render.js in /public/scripts (probably due to the renders being on different scripts and both files being called in layout.pug);
