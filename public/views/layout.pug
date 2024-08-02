@@ -15,17 +15,8 @@ html(lang="en")
         header 
             nav(class="navbar") 
                 div(class="btn-container")
-                    a(href='/', class="home-btn") Home
-                div(class="btn-container")
-                    a(href="/api/products", class="continue-btn") Products
-                div(class="btn-container")
-                    a(href="/api/chat", class="chat-btn") Live Chat
-                div(class="btn-container")
-                    a(href="/api/cart", class="cart-btn") Cart
+                    a(href="/", class="home-btn") HOME
         main
-            block form
-            block cards
+            block main
             block chat
-            block cart
-            script(src="../scripts/prodRender.js")
             script(src="../scripts/chatRender.js")

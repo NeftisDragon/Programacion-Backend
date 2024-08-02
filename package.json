@@ -1,12 +1,12 @@
 {
-  "name": "project",
+  "name": "paragon",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss public/scss/main.scss public/styles/app.css",
+    "build-css": "sass public/scss/main.scss public/styles/app.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "",
@@ -14,10 +14,10 @@
   "dependencies": {
     "express": "^4.18.1",
     "pug": "^3.0.2",
+    "sass": "^1.77.8",
     "socket.io": "^4.5.2"
   },
   "devDependencies": {
-    "node-sass": "^7.0.3",
-    "nodemon": "^2.0.20"
+    "nodemon": "^3.1.4"
   }
 }

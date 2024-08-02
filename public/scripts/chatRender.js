@@ -20,23 +20,23 @@ const render = (messages) => {
 
 let user = document.getElementById('username');
 let input = document.getElementById('input');
-var submitBtn = document.getElementById('submit-btn');
+var sendBtn = document.getElementById('send-btn');
 
 if (user.value.length === 0 || input.value.length === 0) {
-    submitBtn.disabled = true;
-    submitBtn.classList.remove("submit-btn-enabled");
-    submitBtn.classList.add("submit-btn-disabled");
+    sendBtn.disabled = true;
+    sendBtn.classList.remove("send-btn-enabled");
+    sendBtn.classList.add("send-btn-disabled");
 }
 
 [user, input].forEach(function (element) {
     element.addEventListener("change", () => {
-        submitBtn.disabled = false;
-        submitBtn.classList.add("submit-btn-enabled");
-        submitBtn.classList.remove("submit-btn-disabled");
+        sendBtn.disabled = false;
+        sendBtn.classList.add("send-btn-enabled");
+        sendBtn.classList.remove("send-btn-disabled");
         if (user.value.length === 0 || input.value.length === 0) {
-            submitBtn.disabled = true;
-            submitBtn.classList.remove("submit-btn-enabled");
-            submitBtn.classList.add("submit-btn-disabled");
+            sendBtn.disabled = true;
+            sendBtn.classList.remove("send-btn-enabled");
+            sendBtn.classList.add("send-btn-disabled");
             return false;
         }
         return false;

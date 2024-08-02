@@ -1,7 +1,7 @@
-# Coderhouse
-## Programación Backend (32125)
+# PARAGON
 
-I created this repository to post all the assignments I'm working on for my Backend course.
+This was an old chat project of mine using SSR which I now intend to update and bring back alive.
+Project is still a mess, with several unused components all over the place and broken functions.
 
 ### Known issues:
 

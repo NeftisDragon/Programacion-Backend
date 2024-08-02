@@ -1,7 +1,8 @@
-extends layout 
+extends layout
 block chat
     section(class="section")
-        h1 Riscord
+        h1 PARAGON
+        p Public Chat
         div(class="message-area")
             div(id="messages")
             form(onsubmit="return newMessage()", class="chat-form", autocomplete="off")
@@ -10,4 +11,4 @@ block chat
                 div
                     input(type="text", name="message", placeholder="Message", id="input")
                 div
-                    input(type="submit", value="Send", class="submit-btn-disabled", id="submit-btn")
+                    input(type="submit", value="Send", class="send-btn-disabled", id="send-btn")

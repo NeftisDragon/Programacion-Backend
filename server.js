@@ -12,9 +12,6 @@ const {
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 
-const Products = require('./src/containers/products.container.js');
-const products = new Products('./src/databases/products.json');
-
 const Chat = require('./src/containers/chat.container.js');
 const chat = new Chat('./src/databases/chat.json');
 
@@ -42,13 +39,7 @@ app.all('*', (req, res) => {
 io.on('connection', async (socket) => {
     console.log('User connected.');
 
-    //Issue 2: triggers connection loop:
-    socket.emit('products', await products.getAll());
-    socket.on('newProduct', async (product) => {
-        await products.save(product);
-        io.sockets.emit('products', await products.getAll());
-    })
-
+    //Issue 2: emitting messages triggers a connection loop, however, the functions work fine client-side;
     socket.emit('messages', await chat.getAll());
     socket.on('newMessage', async (message) => {
         await chat.save(message);

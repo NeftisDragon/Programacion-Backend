@@ -1,21 +1,7 @@
 extends layout
-block form
+block main
     section(class="section")
-        h1 New Product
-        form(action="/api/", method="post", class="prod-form" id="prod-form")
-            div
-                label(for="name") Name
-                br
-                input(type="text", name="name", id="name", required)
-            div
-                label(for="price") Price
-                br
-                input(type="text", name="price", id="price", required)
-            div
-                label(for="overview") Overview (URL)
-                br
-                input(type="text", name="overview", id="overview")
-            div
-                input(type="submit", value="Send", class="send-btn")
+        h1 PARAGON
+        p Public Chat
         div(class="btn-container")
-            a(href="/api/products", class="continue-btn") View Products
+            a(href="/api/chat", class="chat-btn") Enter Chat
